@@ -28,6 +28,9 @@ provider:
   stage: dev
   region: us-east-1
 
+  environment:
+    GOOGLE_MAPS_API_KEY: key123
+
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
 #    - Effect: "Allow"
@@ -64,6 +67,15 @@ functions:
       - http:
           path: fist-endpoint
           method: POST
+  
+  envVariables:
+    handler: envVariables.handler
+    events:
+      - http:
+          path: envVariables
+          method: GET
+    environment:
+      OTHER_API_KEY: key56789
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
